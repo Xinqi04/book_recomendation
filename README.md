@@ -163,6 +163,7 @@ Tahapan persiapan data dilakukan untuk membersihkan, memvalidasi, dan menggabung
 
 - Penanganan Missing Values Book-Author dan Publisher
   ![missing_value](https://github.com/user-attachments/assets/6f0ff823-2d16-420e-8424-58583ba9e278)
+  
   Beberapa nilai NaN ini diisi secara manual berdasarkan informasi yang ditemukan di internet
 
 ### Data Cleaning - `Users.csv`
@@ -314,5 +315,7 @@ Proyek ini menggunakan dataset publik dari Kaggle dan mengimplementasikan dua pe
 ## **Referensi**
 
 \[1] Kaggle. Retrieved from: [https://www.kaggle.com/datasets/arashnic/book-recommendation-dataset](https://www.kaggle.com/datasets/arashnic/book-recommendation-dataset)
+
 \[2] Ricci, F., Rokach, L., & Shapira, B. (2015). _Recommender Systems Handbook_. Springer.
+
 \[3] Linden, G., Smith, B., & York, J. (2003). Amazon.com Recommendations: Item-to-Item Collaborative Filtering. _IEEE Internet Computing_, 7(1), 76–80.
