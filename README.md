@@ -254,20 +254,26 @@ Model ini menggunakan pendekatan neural collaborative filtering, di mana penggun
 
 ```python
 class RecommenderNet(tf.keras.Model):
-    def __init__(self, num_users, num_books, embedding_size, kwargs):
-        super(RecommenderNet, self).__init__(kwargs)
-        self.user_embedding = Embedding(num_users, embedding_size, name="user_embedding")
-        self.book_embedding = Embedding(num_books, embedding_size, name="book_embedding")
-        self.user_bias = Embedding(num_users, 1, name="user_bias")
-        self.book_bias = Embedding(num_books, 1, name="book_bias")
+    def __init__(self, num_users, num_books, embedding_size, **kwargs):
+        super().__init__(**kwargs)
+        self.user_embedding = layers.Embedding(num_users, embedding_size,
+                                               embeddings_initializer='he_normal',
+                                               embeddings_regularizer=keras.regularizers.l2(1e-6))
+        self.user_bias = layers.Embedding(num_users, 1)
+        self.book_embedding = layers.Embedding(num_books, embedding_size,
+                                               embeddings_initializer='he_normal',
+                                               embeddings_regularizer=keras.regularizers.l2(1e-6))
+        self.book_bias = layers.Embedding(num_books, 1)
 
     def call(self, inputs):
         user_vector = self.user_embedding(inputs[:, 0])
+        user_bias = self.user_bias(inputs[:, 0])
         book_vector = self.book_embedding(inputs[:, 1])
-        dot_product = tf.reduce_sum(user_vector * book_vector, axis=1, keepdims=True)
-        user_b = self.user_bias(inputs[:, 0])
-        book_b = self.book_bias(inputs[:, 1])
-        return tf.nn.sigmoid(dot_product + user_b + book_b)
+        book_bias = self.book_bias(inputs[:, 1])
+
+        dot_user_book = tf.tensordot(user_vector, book_vector, 2)
+        x = dot_user_book + user_bias + book_bias
+        return tf.nn.sigmoid(x)
 ```
 
 #### b. Kompilasi dan Pelatihan Model
@@ -337,7 +343,7 @@ Evaluasi Content-Based Filtering dilakukan menggunakan metrik klasifikasi beriku
 - Recall\@10 = 0.75: Model berhasil menemukan 75% dari seluruh item relevan yang tersedia.
 - F1\@10 = 0.4286: Memberikan gambaran umum bahwa meskipun Recall tinggi, Precision masih perlu ditingkatkan agar rekomendasi lebih tepat sasaran.
 
-### 🤝 2. Evaluasi Collaborative Filtering
+### 2. Evaluasi Collaborative Filtering
 
 #### a. Metrik Evaluasi: Root Mean Squared Error (RMSE)
 
