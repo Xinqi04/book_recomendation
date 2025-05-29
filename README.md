@@ -7,7 +7,6 @@
 Proyek ini bertujuan untuk mengembangkan sebuah sistem rekomendasi buku yang efektif dan cerdas guna mengatasi tantangan _information overload_ yang kerap dialami pengguna di era digital saat ini. Dengan semakin meningkatnya jumlah buku yang diterbitkan setiap harinya, baik dalam bentuk cetak maupun digital, para pembaca sering kali mengalami kesulitan dalam menyaring dan menemukan buku-buku yang sesuai dengan minat atau kebutuhan mereka. Oleh karena itu, sistem rekomendasi menjadi alat penting dalam membantu pengguna menemukan konten yang relevan secara lebih personal dan efisien.
 
 Sistem rekomendasi yang dirancang dalam proyek ini menggunakan data publik yang tersedia di Kaggle, yaitu _Book-Crossing Dataset_ \[1]. Dataset ini mencakup tiga komponen utama:
-![book_eda1](https://github.com/user-attachments/assets/90156c64-c34c-4380-bf65-758036f7b18a)
 
 1. Informasi Buku – mencakup ISBN, judul, penulis, dan penerbit.
 2. Data Pengguna – termasuk usia dan lokasi pengguna.
@@ -90,13 +89,16 @@ Dataset yang digunakan dalam proyek ini berasal dari Kaggle, yaitu dataset **"Bo
 
 - **Insight EDA**:
 
-  - ![Distribusi Tahun Publikasi](images/book_eda1.png)
+  - ![book_eda1](https://github.com/user-attachments/assets/37300e70-384e-4cf8-893b-60ccef694b6a)
+
     Puncak publikasi buku terlihat jelas di sekitar tahun 2000-an. Batang-batang tertinggi berada di sekitar tahun 1990-an akhir hingga awal 2000-an, menunjukkan bahwa sebagian besar buku dalam dataset ini diterbitkan pada periode tersebut.
 
-  - ![Distribusi Penulis dengan Buku Terbanyak](images/book_eda2.png)
+  - ![book_eda2](https://github.com/user-attachments/assets/16d7133a-ae99-41a0-a0ec-4e40511dccad)
+
     Diagram menunjukkan bahwa Agatha Christie adalah penulis dengan jumlah buku terbanyak di antara 10 penulis teratas yang disajikan. diikuti oleh Wilian Shakespeare dan Stephen King.
 
-  - ![Distribusi Penerbit dengan Bukut Terbit Terbanyak](images/book_eda3.png)
+  - ![book_eda3](https://github.com/user-attachments/assets/af02b6f2-0022-42d5-9bc9-4c0ef8fdda8c)
+
     Diagram menunjukkan bahwa Harlequin adalah penerbit dengan jumlah buku terbanyak di antara 10 penerbit teratas yang disajikan. Hal ini mengindikasikan dominansi Harlequin dalam jumlah publikasi dibandingkan penerbit lain dalam dataset ini.
 
 ### Users.csv
@@ -110,10 +112,12 @@ Dataset yang digunakan dalam proyek ini berasal dari Kaggle, yaitu dataset **"Bo
 
 - **Insight EDA**:
 
-  - ![Distribusi Usia Pengguna](images/user_eda1.png)
+  - ![user_eda1](https://github.com/user-attachments/assets/92819615-0d77-4a84-a4ad-fac2f68c1d3c)
+
     Diagram menunjukkan bahwa sebagian besar pengguna berada dalam rentang usia muda hingga dewasa (sekitar 20-40 tahun). Distribusi usia pengguna tampak right-skewed, dengan jumlah pengguna menurun signifikan seiring bertambahnya usia.
 
-  - ![Distribusi Lokasi Asal Pengguna](images/user_eda2.png)
+  - ![user_eda2](https://github.com/user-attachments/assets/20eb8e03-f269-4e93-916a-925d3ca81101)
+
     Diagram menunjukkan bahwa London, England, United Kingdom memiliki jumlah pengguna terbanyak, diikuti oleh Toronto, Ontario, Canada. Hal ini mengindikasikan bahwa sebagian besar pengguna dalam dataset ini terkonsentrasi di beberapa kota besar, terutama di Inggris dan Kanada.
 
 ### Ratings.csv
@@ -127,17 +131,18 @@ Dataset yang digunakan dalam proyek ini berasal dari Kaggle, yaitu dataset **"Bo
 
 - **Insight EDA**:
 
-  - ![Distribusi Nilai Rating Buku](images/rating_eda1.png)
+  - ![rating_eda1](https://github.com/user-attachments/assets/c7aa59ae-911e-4fe8-a6cb-3c9bb3baebe1)
+
     Diagram menunjukkan bahwa sebagian besar rating buku yang diberikan adalah 0. Ini mengindikasikan bahwa mayoritas interaksi pengguna merupakan implicit feedback, di mana buku dilihat atau dibaca tanpa rating eksplisit.
 
-  - ![Distribusi Nilai Rating Buku](images/rating_eda2.png)
+  - ![rating_eda2](https://github.com/user-attachments/assets/a0beb5f4-6e04-4ba3-948d-235493c74914)
     Diagram pai menunjukkan bahwa mayoritas interaksi pengguna dengan buku adalah implisit (62.3%), sementara rating eksplisit menyumbang 37.7%.
 
 ### Bivariate EDA
 
-- ![Jumlah Rating vs Rata-rata Rating per User](images/eda1.png)
+- ![eda1](https://github.com/user-attachments/assets/14da974e-9a38-4dc9-85b5-bd9edc758fa2)
   Diagram scatter plot menunjukkan bahwa mayoritas pengguna memberikan sedikit rating, dan rata-rata rating mereka bervariasi. Terdapat pula beberapa outlier pengguna yang memberikan jumlah rating sangat banyak namun dengan rata-rata rating yang relatif rendah.
-- ![Jumlah Rating vs Rata-rata Rating per Buku](images/eda2.png)
+- ![eda2](https://github.com/user-attachments/assets/0e737a29-1d69-4073-a070-33ad331ed062)
   Diagram scatter plot menunjukkan bahwa sebagian besar buku menerima sedikit rating, namun di antara buku-buku tersebut, rata-rata ratingnya bervariasi luas dari 0 hingga 10. Ada juga beberapa buku yang menerima jumlah rating sangat tinggi (lebih dari 1000 rating), tetapi rata-rata ratingnya cenderung menurun seiring dengan peningkatan jumlah rating, atau tetap berada di kisaran tengah.
 
 ---
@@ -153,15 +158,16 @@ Tahapan persiapan data dilakukan untuk membersihkan, memvalidasi, dan menggabung
 #### Penanganan _Year-Of-Publication_ yang Tidak Valid:
 
 - Ditemukan beberapa entri `Year-Of-Publication` yang tidak valid (misalnya, `"DK Publishing Inc"`, `"Gallimard"`, `"2037"`).
-  ![year_anomali](images/year_anomali.png)
+  ![year_anomali](https://github.com/user-attachments/assets/cc71db06-3531-4c1c-ab24-09213780e988)
+
 
 - Tiga baris data yang mengalami pergeseran kolom (misalnya, `Book-Author` masuk ke `Year-Of-Publication`) diperbaiki secara manual karena jumlahnya sedikit.
-  ![year_anomali](images/pergeseran.png)
+![pergeseran](https://github.com/user-attachments/assets/dab71d5f-11dc-471d-8f3a-c1b86314be94)
 
 - Kolom `Year-Of-Publication` diubah menjadi tipe data numerik, dengan nilai string diubah menjadi `NaN`. Data kemudian difilter untuk hanya menyertakan tahun publikasi antara `0` dan `2025` (termasuk `0` sebagai placeholder untuk tahun tidak diketahui). Setelah pembersihan, kolom `Year-Of-Publication` diubah kembali menjadi `integer` dan kemudian `string`.
 
 - Penanganan Missing Values Book-Author dan Publisher
-  ![Missing Value](images/missing_value.png)
+  ![missing_value](https://github.com/user-attachments/assets/6f0ff823-2d16-420e-8424-58583ba9e278)
   Beberapa nilai NaN ini diisi secara manual berdasarkan informasi yang ditemukan di internet
 
 ### Data Cleaning - `Users.csv`
@@ -213,7 +219,8 @@ nn_model.fit(tfidf_matrix)
 
 ### Contoh Rekomendasi CBF
 
-![Missing Value](images/hasil_cbf.png)
+![hasil_cbf](https://github.com/user-attachments/assets/b0fcef82-0d69-4224-95d2-610cd5ae4320)
+
 
 ---
 
@@ -288,16 +295,20 @@ $$
 
 - **Visualisasi Training**:
   Kurva RMSE untuk data training dan validasi ditampilkan selama proses pelatihan untuk memantau performa model.
+![matriks](https://github.com/user-attachments/assets/95847f7f-dc27-472e-9df1-698a79f76b3f)
 
 - **Perhitungan RMSE Final**:
 
-  - Model memprediksi rating pada data validasi.
-  - Hasil prediksi **di-denormalisasi** kembali ke skala asli (misalnya 0–10).
-  - RMSE dihitung antara rating aktual dan prediksi yang sudah di-denormalisasi.
+Model Collaborative Filtering yang dikembangkan menghasilkan nilai Root Mean Squared Error (RMSE) sebesar 3.5608. Nilai ini menunjukkan bahwa prediksi rating buku oleh model masih memiliki rata-rata kesalahan yang cukup tinggi terhadap rating sebenarnya. Hal ini mengindikasikan bahwa model belum optimal dalam mempelajari preferensi pengguna.
+
+Meskipun begitu, perlu dicatat bahwa model baru dilatih selama 10 epoch, yang relatif singkat untuk proses pelatihan model berbasis deep learning. Dengan pelatihan yang lebih lama, tuning hyperparameter yang lebih baik, dan mungkin penggunaan teknik regularisasi atau arsitektur model yang lebih kompleks, kinerja model masih dapat ditingkatkan lebih jauh.
+
+Namun, karena keterbatasan waktu dalam proyek ini, proses pelatihan lebih dalam tidak dapat dilakukan secara menyeluruh. Oleh karena itu, hasil ini dapat dijadikan baseline awal, dan pengembangan lebih lanjut tetap sangat terbuka untuk dilakukan di masa mendatang.
 
 ---
 
 ### Hasil Coba CF
+![hasil_cbf](https://github.com/user-attachments/assets/6389efcb-6fc6-4f6a-8100-a10beec95995)
 
 ---
 
