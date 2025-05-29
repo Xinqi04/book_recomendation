@@ -52,7 +52,6 @@ Untuk mencapai tujuan di atas, saya mengusulkan dua pendekatan sistem rekomendas
 
 - **Kekurangan**:
   - Terbatas pada fitur-fitur yang tersedia dalam metadata buku.
-  - Mungkin tidak dapat menangkap preferensi pengguna yang kompleks atau merekomendasikan buku di luar genre yang sudah dikenal pengguna (_kurangnya serendipity_).
 
 #### 2. Collaborative Filtering (CF)
 
@@ -64,10 +63,6 @@ Untuk mencapai tujuan di atas, saya mengusulkan dua pendekatan sistem rekomendas
   - Mampu memberikan rekomendasi yang _serendipitous_ (tidak terduga namun relevan).
   - Menangkap preferensi pengguna yang kompleks berdasarkan perilaku interaksi.
   - Tidak memerlukan metadata item.
-
-- **Kekurangan**:
-  - Mengalami masalah _cold-start_ untuk pengguna dan buku baru (membutuhkan data interaksi yang cukup).
-  - Rentan terhadap masalah _data sparsity_ (jumlah interaksi pengguna rendah).
 
 ---
 
