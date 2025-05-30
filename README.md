@@ -288,15 +288,18 @@ Model dikompilasi dengan:
 
 Selama pelatihan, metrik RMSE digunakan untuk mengevaluasi performa model. Grafik di bawah menunjukkan perbaikan performa model selama epoch:
 
-![matriks](https://github.com/user-attachments/assets/d7c8550f-cdb6-4f98-8fa7-d47d94020e86)
+![download](https://github.com/user-attachments/assets/3b0c150a-ed8d-4585-a812-4bc09b9e5aeb)
+
+Berdasarkan grafik "model_metrics", terlihat bahwa nilai root_mean_squared_error (RMSE) pada data training terus menurun seiring bertambahnya epoch, yang menunjukkan model semakin baik dalam mempelajari data pelatihan. Namun, nilai RMSE pada data test awalnya menurun kemudian mulai meningkat setelah epoch 1 atau 2. Ini berarti model mencapai performa optimalnya pada data test di awal epoch dan kemudian mulai kehilangan kemampuan generalisasinya.
 
 
 #### d. Output Top-N Rekomendasi
 
 Untuk pengguna dengan ID tertentu, contoh hasil model Collaborative Filtering adalah:
 
-![nyoba cf](https://github.com/user-attachments/assets/1a91ec8b-5a13-4a6f-a934-be086736c30f)
+![nyoba cf1](https://github.com/user-attachments/assets/5bc87b97-f6a4-4a56-a9a1-b83295963e8c)
 
+Untuk User ID 244998, daftar "Buku dengan rating tertinggi dari user" menunjukkan buku-buku yang secara personal disukai oleh pengguna tersebut berdasarkan rating yang diberikan. Daftar "Top 10 Rekomendasi Buku untuk User" berisi buku-buku baru yang disarankan oleh sistem rekomendasi, yang mungkin menarik bagi pengguna berdasarkan pola preferensi mereka atau pengguna lain yang serupa. Perbandingan kedua daftar ini dapat menunjukkan seberapa baik sistem rekomendasi menangkap preferensi pengguna atau memperkenalkan keragaman bacaan baru.
 
 Model ini mampu menemukan buku yang belum dibaca oleh pengguna, namun relevan berdasarkan pola interaksi pengguna lain yang serupa.
 
@@ -305,8 +308,6 @@ Model ini mampu menemukan buku yang belum dibaca oleh pengguna, namun relevan be
 ## Evaluation
 
 Dilakukan evaluasi terhadap performa dua pendekatan sistem rekomendasi yang telah dibangun, yaitu Content-Based Filtering dan Collaborative Filtering. Evaluasi bertujuan untuk mengetahui seberapa baik masing-masing model dalam memberikan rekomendasi yang relevan kepada pengguna.
-
----
 
 ### 1. Evaluasi Content-Based Filtering
 
